@@ -6,9 +6,7 @@ interface Props {
 }
 
 export const LeftColumn = ({ user, logout }: Props) => {
-  console.log(user);
-  
-  return (
+    return (
     <div className='shadow h-screen bg-gray-50 relative'>
       <h1 className='py-8 w-full text-center text-3xl font-sans'>Fronton</h1>
       <ul className='mx-8'>
