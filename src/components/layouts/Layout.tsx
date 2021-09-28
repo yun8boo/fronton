@@ -14,7 +14,7 @@ export const Layout: FC = ({children}) => {
         <div className='w-64'>
           <LeftColumn user={user} logout={() => supabase.auth.signOut()} />
         </div>
-        <div className='right-column'>
+        <div className='right-column p-8'>
           {children}
         </div>
       </main>

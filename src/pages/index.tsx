@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { Auth } from '@supabase/ui'
 import { useAuth } from '@/hooks/useAuth';
-import { TodoList } from '@/components/domains/todo/TodoList';
+import { LogList } from '@/components/domains/log/LogList';
 
 const Home: NextPage = () => {
   const { supabase ,user } = useAuth()
@@ -20,21 +20,7 @@ const Home: NextPage = () => {
         />
       </div>
     ) : (
-      <div
-        className="w-full h-full flex flex-col justify-center items-center p-4"
-        style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
-      >
-        <TodoList user={user} />
-        <button
-          className="btn-black w-full mt-12"
-          onClick={async () => {
-            const { error } = await supabase.auth.signOut()
-            if (error) console.log('Error logging out:', error.message)
-          }}
-        >
-          Logout
-        </button>
-      </div>
+      <LogList user={user} />
     )}
   </div>
   )

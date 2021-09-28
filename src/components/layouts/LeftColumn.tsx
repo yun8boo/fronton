@@ -14,7 +14,19 @@ export const LeftColumn = ({ user, logout }: Props) => {
           role='button'
           className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
         >
-          TODO
+          Movie Logs
+        </li>
+        <li
+          role='button'
+          className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
+        >
+          Book Logs
+        </li>
+        <li
+          role='button'
+          className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
+        >
+          Restaurant Logs
         </li>
         <li
           role='button'
