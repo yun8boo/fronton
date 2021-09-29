@@ -9,6 +9,7 @@
 ## tech stack
 
 - Frontend:
+  - TypeScript
   - Next.js
   - Tailwind
   - supabase.js
