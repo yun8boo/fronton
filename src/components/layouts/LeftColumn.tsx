@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { User } from "@supabase/gotrue-js"
 
 interface Props {
@@ -14,19 +15,31 @@ export const LeftColumn = ({ user, logout }: Props) => {
           role='button'
           className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
         >
-          Movie Logs
+        <Link href="/movie_logs">
+          <a>
+            Movie Logs
+          </a>
+        </Link>
         </li>
         <li
           role='button'
           className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
         >
-          Book Logs
+          <Link href="/book_logs">
+          <a>
+            Book Logs
+          </a>
+        </Link>
         </li>
         <li
           role='button'
           className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
         >
+          <Link href="/restaurant_logs">
+          <a>
           Restaurant Logs
+          </a>
+        </Link>
         </li>
         <li
           role='button'

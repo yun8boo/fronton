@@ -1,6 +1,6 @@
+import Link from 'next/link'
 import { SearchIcon } from '@heroicons/react/solid'
 import { LogCard } from '../LogCard'
-
 
 interface Props {
   logs: any[] | null | undefined
@@ -36,7 +36,11 @@ export const LogList = ({ logs, err, addLog }: Props) => {
     >
       <div className='flex justify-between items-center'>
         <h2 className='text-2xl'>Movie Logs</h2>
-        <button onClick={() => addLog('メメント', '4.2/5')} className='transition rounded-lg py-4 w-36 bg-indigo-400 text-center text-white hover:bg-indigo-300'>add</button> 
+        <Link href="/movie_logs/add">
+          <a className='transition rounded-lg py-4 w-36 bg-indigo-400 text-center text-white hover:bg-indigo-300'>
+            add
+          </a>
+        </Link>
       </div>
       <div className='flex mt-8 shadow rounded-lg p-1 bg-white'>
         <input className="w-full rounded p-2" type="text" placeholder="Search movie title" />

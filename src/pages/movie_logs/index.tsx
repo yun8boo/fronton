@@ -1,9 +1,8 @@
-import type { NextPage } from 'next'
 import { Auth } from '@supabase/ui'
-import { useAuth } from '@/hooks/useAuth';
-import { LogList } from '@/components/domains/movieLog/LogList';
+import { useAuth } from "@/hooks/useAuth"
+import { LogList } from "@/components/domains/movieLog/LogList"
 
-const Home: NextPage = () => {
+const MovieLogs = () => {
   const { supabase ,user } = useAuth()
   return (
     <div className="w-full h-full">
@@ -26,4 +25,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default MovieLogs
