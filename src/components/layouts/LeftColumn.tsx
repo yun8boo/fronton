@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react"
 import Link from 'next/link'
+import { supabase } from "@/libs/supabase/client"
 import { User } from "@supabase/gotrue-js"
 
 interface Props {
@@ -7,40 +9,48 @@ interface Props {
 }
 
 export const LeftColumn = ({ user, logout }: Props) => {
-    return (
+  const [categories, setCategories] = useState<any[] | null>()
+  const [err, setErr] = useState<string | null>()
+  useEffect(() => {
+    fetchCategories()
+  }, [])
+
+  const fetchCategories = async () => {
+    // const { data, error } = await supabase.from('categories').select().order('id', {ascending: true})
+    const { data, error } = await supabase.from('categories').select()
+    if(error) {
+      return setErr(error.message)
+    }
+    setCategories(data)
+  }
+
+  const addCategory = async({name}: {name: string}) => {
+    const { data: category, error } = await supabase
+      .from('categories')
+      .insert({ name: 'movie', user_id: user.id })
+      .single()
+    console.log({category, error});
+  }
+  
+  return (
     <div className='shadow h-screen bg-gray-50 relative'>
       <h1 className='py-8 w-full text-center text-3xl font-sans'>Fronton</h1>
       <ul className='mx-8'>
-        <li
-          role='button'
-          className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
-        >
-        <Link href="/movie_logs">
-          <a>
-            Movie Logs
-          </a>
-        </Link>
-        </li>
-        <li
-          role='button'
-          className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
-        >
-          <Link href="/book_logs">
-          <a>
-            Book Logs
-          </a>
-        </Link>
-        </li>
-        <li
-          role='button'
-          className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
-        >
-          <Link href="/restaurant_logs">
-          <a>
-          Restaurant Logs
-          </a>
-        </Link>
-        </li>
+        {
+          categories?.map(category => (
+            <li
+              key={category.id}
+              role='button'
+              className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
+            >
+              <Link href="/movie_logs">
+                <a>
+                  {category.name} Logs
+                </a>
+              </Link>
+            </li>
+          ))
+        }
         <li
           role='button'
           className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
