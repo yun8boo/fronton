@@ -42,7 +42,7 @@ export const LeftColumn = ({ user, logout }: Props) => {
               role='button'
               className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
             >
-              <Link href="/categories/">
+              <Link href={`/categories/${category.id}`}>
                 <a>
                   {category.name} Logs
                 </a>

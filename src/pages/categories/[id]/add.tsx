@@ -1,11 +1,17 @@
+import { useRouter } from "next/router";
 import Link from 'next/link'
 import { ChevronLeftIcon } from '@heroicons/react/solid'
 
 const Add = () => {
+  const { query } = useRouter()
+  const { id } = query
+
+  if(!id) return null
+
   return (
     <div className="w-full flex flex-col p-4">
       <div className='flex justify-between items-center'>
-        <Link href="/movie_logs">
+        <Link href={`/categories/${id}`}>
           <a className='flex items-center'>
             <ChevronLeftIcon style={{height: 30, width: 30}} />
             <h2 className='text-2xl'>back</h2>

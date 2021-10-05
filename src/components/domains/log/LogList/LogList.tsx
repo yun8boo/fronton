@@ -5,10 +5,12 @@ import { LogCard } from '../LogCard'
 interface Props {
   logs: any[] | null | undefined
   err: string | null | undefined
+  categoryId?: string
+  categoryName?: string
   addLog: (titleText: string, reviewText: string, categoryId: number) => Promise<void>
 }
 
-export const LogList = ({ logs, err, addLog }: Props) => {
+export const LogList = ({ logs, err, categoryId, categoryName, addLog }: Props) => {
   if(err) {
     return (
       <p>{err}</p>
@@ -26,7 +28,11 @@ export const LogList = ({ logs, err, addLog }: Props) => {
         className="w-full h-full flex flex-col justify-center items-center p-4"
         style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
       >
-        <button onClick={() => addLog('ミッドサマー', '3.8/5',1)} className='transition rounded-lg py-4 w-full bg-indigo-400 text-center text-white hover:bg-indigo-300'>Add movie log</button>
+        <Link href={`/categories/add`}>
+          <a className='transition rounded-lg py-4 w-36 bg-indigo-400 text-center text-white hover:bg-indigo-300'>
+            add category
+          </a>
+        </Link>
       </div>  
     )
   }
@@ -35,12 +41,14 @@ export const LogList = ({ logs, err, addLog }: Props) => {
       className="w-full flex flex-col p-4"
     >
       <div className='flex justify-between items-center'>
-        <h2 className='text-2xl'>Movie Logs</h2>
-        <Link href="/movie_logs/add">
-          <a className='transition rounded-lg py-4 w-36 bg-indigo-400 text-center text-white hover:bg-indigo-300'>
-            add
-          </a>
-        </Link>
+        <h2 className='text-2xl'>{categoryName ? `${categoryName[0].toUpperCase()}${categoryName?.slice(1)} Logs` : `All Logs`}</h2>
+        {categoryId && (
+          <Link href={`/categories/${categoryId}/add`}>
+            <a className='transition rounded-lg py-4 w-36 bg-indigo-400 text-center text-white hover:bg-indigo-300'>
+              add
+            </a>
+          </Link>
+        )}
       </div>
       <div className='flex mt-8 shadow rounded-lg p-1 bg-white'>
         <input className="w-full rounded p-2" type="text" placeholder="Search movie title" />

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { Auth } from '@supabase/ui'
 import { useAuth } from '@/hooks/useAuth';
-import { LogList } from '@/components/domains/movieLog/LogList';
+import { LogList } from '@/components/domains/log/LogList';
 
 const Home: NextPage = () => {
   const { supabase ,user } = useAuth()

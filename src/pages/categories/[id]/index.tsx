@@ -1,9 +1,15 @@
 import { Auth } from '@supabase/ui'
+import { useRouter } from "next/router";
 import { useAuth } from "@/hooks/useAuth"
-import { LogList } from "@/components/domains/movieLog/LogList"
+import { LogList } from "@/components/domains/log/LogList"
 
-const MovieLogs = () => {
+const CategoryId = () => {
   const { supabase ,user } = useAuth()
+  const { query } = useRouter()
+  const { id } = query
+
+  if(!id) return null
+
   return (
     <div className="w-full h-full">
     {!user ? (
@@ -19,10 +25,10 @@ const MovieLogs = () => {
         />
       </div>
     ) : (
-      <LogList user={user} />
+      <LogList user={user} categoryId={id as string} />
     )}
   </div>
   )
 }
 
-export default MovieLogs
+export default CategoryId
