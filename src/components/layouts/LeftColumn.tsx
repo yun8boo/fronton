@@ -16,8 +16,7 @@ export const LeftColumn = ({ user, logout }: Props) => {
   }, [])
 
   const fetchCategories = async () => {
-    // const { data, error } = await supabase.from('categories').select().order('id', {ascending: true})
-    const { data, error } = await supabase.from('categories').select()
+    const { data, error } = await supabase.from('categories').select().order('id', {ascending: true})
     if(error) {
       return setErr(error.message)
     }
@@ -43,7 +42,7 @@ export const LeftColumn = ({ user, logout }: Props) => {
               role='button'
               className='transition rounded-lg py-4 w-full text-center font-sans hover:bg-indigo-400 hover:text-white'
             >
-              <Link href="/movie_logs">
+              <Link href="/categories/">
                 <a>
                   {category.name} Logs
                 </a>

@@ -5,7 +5,7 @@ import { LogCard } from '../LogCard'
 interface Props {
   logs: any[] | null | undefined
   err: string | null | undefined
-  addLog: (titleText: string, reviewText: string) => Promise<void>
+  addLog: (titleText: string, reviewText: string, categoryId: number) => Promise<void>
 }
 
 export const LogList = ({ logs, err, addLog }: Props) => {
@@ -26,7 +26,7 @@ export const LogList = ({ logs, err, addLog }: Props) => {
         className="w-full h-full flex flex-col justify-center items-center p-4"
         style={{ minWidth: 250, maxWidth: 600, margin: 'auto' }}
       >
-        <button onClick={() => addLog('ミッドサマー', '3.8/5')} className='transition rounded-lg py-4 w-full bg-indigo-400 text-center text-white hover:bg-indigo-300'>Add movie log</button>
+        <button onClick={() => addLog('ミッドサマー', '3.8/5',1)} className='transition rounded-lg py-4 w-full bg-indigo-400 text-center text-white hover:bg-indigo-300'>Add movie log</button>
       </div>  
     )
   }

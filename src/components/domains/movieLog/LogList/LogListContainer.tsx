@@ -14,7 +14,7 @@ export const LogListContainer = ({user} : Props) => {
     fetchTodos()
   }, [])
   const fetchTodos = async () => {
-    const { data, error } = await supabase.from('logs').select('*').order('id', {ascending: true})
+    const { data, error } = await supabase.from('logs').select().eq('category_id', 1).order('id', {ascending: true})
     if(error) {
       return setErr(error.message)
     }
@@ -22,15 +22,15 @@ export const LogListContainer = ({user} : Props) => {
     
   }
 
-  const addLog = async(titleText: string, reviewText: string) => {
-    console.log(user);
+  const addLog = async(titleText: string, reviewText: string, categoryId: number) => {
+    console.log({categoryId});
     
     const title = titleText.trim()
     const review = reviewText.trim()
     if (title.length) {
       const { data: todo, error } = await supabase
         .from('logs')
-        .insert({ title, review, user_id: user.id })
+        .insert({ title, review, user_id: user.id, category_id: categoryId })
         .single()
       console.log({todo, error});
     } 
