@@ -27,8 +27,6 @@ export const LogListContainer = ({user, categoryId} : Props) => {
 
   const fetchCategories = async () => {
     const { data, error } = await supabase.from('categories').select().eq('id', categoryId).order('id', {ascending: true})
-    console.log({category: data});
-    
     if(error) {
       return setCategoryErr(error.message)
     }
