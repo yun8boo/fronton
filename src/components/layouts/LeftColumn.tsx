@@ -28,7 +28,6 @@ export const LeftColumn = ({ user, logout }: Props) => {
       .from('categories')
       .insert({ name: 'movie', user_id: user.id })
       .single()
-    console.log({category, error});
   }
   
   return (

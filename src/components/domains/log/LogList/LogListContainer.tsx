@@ -36,8 +36,6 @@ export const LogListContainer = ({user, categoryId} : Props) => {
   }
 
   const addLog = async(titleText: string, reviewText: string, categoryId: number) => {
-    console.log({categoryId});
-    
     const title = titleText.trim()
     const review = reviewText.trim()
     if (title.length) {
@@ -45,7 +43,6 @@ export const LogListContainer = ({user, categoryId} : Props) => {
         .from('logs')
         .insert({ title, review, user_id: user.id, category_id: categoryId })
         .single()
-      console.log({todo, error});
     } 
   }
   return <LogList logs={logs} err={logsErr} addLog={addLog} categoryId={categoryId} categoryName={category?.name} />
